@@ -102,7 +102,8 @@ class ViewController: UIViewController {
 	
 	fileprivate func handleChangedGesture(gesture: UILongPressGestureRecognizer) {
 		let pressedLocation = gesture.location(in: iconsContainerView)
-		let hitTest = iconsContainerView.hitTest(pressedLocation, with: nil)
+		let fixedYLocation = CGPoint(x: pressedLocation.x, y: iconsContainerView.frame.height / 2)
+		let hitTest = iconsContainerView.hitTest(fixedYLocation, with: nil)
 		
 		if hitTest is UIImageView {
 			UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
